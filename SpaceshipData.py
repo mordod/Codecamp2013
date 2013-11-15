@@ -1,7 +1,7 @@
 import pygame
 import random
 from spaceship import Spaceship, Spaceship2
-from baddie import Baddie
+from baddie import Baddie,Baddie2 
 
 class SpaceshipData:
 
@@ -70,12 +70,12 @@ class SpaceshipData:
             self.spaceship2.moveDown(self.spaceship2_speed,self.height)
         if pygame.K_SPACE in newkeys:
             self.bullets.append(self.spaceship2.fire(self.bullet_width,self.bullet_height,self.bullet_color)) 
-
-        if random.randint(1, self.frame_rate/2) == 1:
-            self.addBaddie()
-
-        if random.randint(1, self.frame_rate/2) == 1:
-            self.addBaddie()    
+        if self.kills < 150:
+            if random.randint(1, self.frame_rate/2) == 1:
+                self.addBaddie()
+        if self.kills > 100:
+            if random.randint(1, self.frame_rate/2) == 1:
+                self.addBaddie2()    
 
         for bullet in self.bullets:
             bullet.moveBullet()
@@ -117,7 +117,8 @@ class SpaceshipData:
         new_baddie = Baddie( self.baddie_width, self.baddie_height, random.randint (1,self.width - self.baddie_width) , 0,   self.baddie_color )             
         self.baddies.append( new_baddie )
 
-        new_baddie2 = Baddie( self.baddie2_width, self.baddie2_height, random.randint (1,self.width - self.baddie2_width) , 0,   self.baddie2_color )             
+    def addBaddie2(self):
+        new_baddie2 = Baddie2( self.baddie2_width, self.baddie2_height, random.randint (1,self.width - self.baddie2_width) , 0,   self.baddie2_color )             
         self.baddies.append( new_baddie2 )
                    
         return

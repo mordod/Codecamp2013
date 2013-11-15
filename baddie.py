@@ -14,6 +14,7 @@ class Baddie():
         self.speed  = 3
         self.color  = color
         self.alive  = True
+        self.IMG = pygame.image.load("dragon.png")   
         return
 
     def tick(self,back_wall,upper_wall,lower_wall,far_wall):
@@ -39,9 +40,8 @@ class Baddie():
     def setAlive(self,alive):
         self.alive = alive
     
-    def draw(self, surface):
-        IMG = pygame.image.load("dragon.png")        
-        surface.blit(IMG, (self.x, self.y))
+    def draw(self, surface):     
+        surface.blit(self.IMG, (self.x, self.y))
         return
 
 class Baddie2():
@@ -53,9 +53,10 @@ class Baddie2():
         self.y      = y
         self.new_x  = x
         self.new_y  = y
-        self.speed  = 3
+        self.speed  = 5
         self.color  = color
         self.alive  = True
+        self.IMG = pygame.image.load("hat_1.png")
         return
 
     def tick(self,back_wall,upper_wall,lower_wall,far_wall):
@@ -81,9 +82,8 @@ class Baddie2():
     def setAlive(self,alive):
         self.alive = alive
     
-    def draw(self, surface):
-        IMG = pygame.image.load("hat_4.png")        
-        surface.blit(IMG, (self.x, self.y))
+    def draw(self, surface):        
+        surface.blit(self.IMG, (self.x, self.y))
         return
         
 
