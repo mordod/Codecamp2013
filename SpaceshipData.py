@@ -12,7 +12,7 @@ class SpaceshipData:
         self.text_color = (255,0,0)
         self.width  = width
         self.height = height
-        self.upper_limit = self.width/3
+        self.upper_limit = self.width/1
         self.spaceship_width = 20
         self.spaceship_height = 10
         self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,0,(self.height / 2) - 10, (255,255,255))
@@ -22,12 +22,12 @@ class SpaceshipData:
         self.spaceship2 = Spaceship2(self.spaceship2_width,self.spaceship2_height,0,(self.height / 2) - 10, (255,255,0))
         self.spaceship2_speed = 10
         self.bullets = []
-        self.bullet_width = 10
-        self.bullet_height = 5
+        self.bullet_width = 5
+        self.bullet_height = 10
         self.bullet_color = (255,255,255)
         self.baddies = []
-        self.baddie_width = 20
-        self.baddie_height = 20
+        self.baddie_width = 121
+        self.baddie_height = 95
         self.baddie_color = (255,0,0)
         self.kills = 0
         self.score_color = (255, 255, 255)
@@ -76,7 +76,7 @@ class SpaceshipData:
             bullet.checkBackWall(self.width)
                 
         for baddie in self.baddies:
-            baddie.tick(0,0,self.height)
+            baddie.tick(0,0,self.height,self.width)
 
         for bullet in self.bullets:
             if not bullet.alive:
@@ -101,15 +101,14 @@ class SpaceshipData:
                 live_bullets.append(bullet)
         for baddie in self.baddies:
             if baddie.alive:
-                live_baddies.append(baddie)
-      
+                live_baddies.append(baddie)      
         self.bullets = live_bullets
         self.baddies = live_baddies
             
         return
 
     def addBaddie(self):
-        new_baddie = Baddie( self.baddie_width, self.baddie_height, self.width, random.randint(0,(self.height-self.baddie_height)), self.baddie_color )
+        new_baddie = Baddie( self.baddie_width, self.baddie_height, random.randint (1,self.width - self.baddie_width) , 0,   self.baddie_color )             
         self.baddies.append( new_baddie )
                    
         return

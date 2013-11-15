@@ -1,6 +1,7 @@
 import pygame
 import random
 
+
 class Baddie():
 
     def __init__(self,width,height,x,y,color):
@@ -15,18 +16,18 @@ class Baddie():
         self.alive  = True
         return
 
-    def tick(self,back_wall,upper_wall,lower_wall):
-        self.new_x = self.x - self.speed
-        self.new_y = self.y + random.randint(-1,1)
-        if self.new_x < back_wall:
+    def tick(self,back_wall,upper_wall,lower_wall,far_wall):
+        self.new_y = self.y + self.speed
+        self.new_x = self.x + random.randint(-1,1)
+        if self.new_y >lower_wall:
             self.setAlive(False)
         else:
-            self.x = self.new_x
-        if self.new_y < upper_wall:
-            self.new_y = upper_wall
-        elif self.new_y + self.height > lower_wall:
-            self.new_y = lower_wall - self.height
-        self.y = self.new_y
+            self.y = self.new_y
+        if self.new_x < back_wall:
+            self.new_x = back_wall
+        elif self.new_x + self.width > far_wall:
+            self.new_x = far_wall - self.height
+        self.x = self.new_x
         return self.alive
 
     def getAlive(self):
@@ -39,7 +40,7 @@ class Baddie():
         self.alive = alive
     
     def draw(self, surface):
-        rect = pygame.Rect( self.x, self.y, self.width, self.height )
-        pygame.draw.rect(surface, self.color, rect)
+        IMG = pygame.image.load("dragon.png")        
+        surface.blit(IMG, (self.x, self.y))
         return
         
