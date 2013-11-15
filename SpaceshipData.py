@@ -29,6 +29,9 @@ class SpaceshipData:
         self.baddie_width = 121
         self.baddie_height = 95
         self.baddie_color = (255,0,0)
+        self.baddie2_width = 121
+        self.baddie2_height = 95
+        self.baddie2_color = (255,0,0)
         self.kills = 0
         self.score_color = (255, 255, 255)
         self.score_x = 10
@@ -55,7 +58,7 @@ class SpaceshipData:
         if pygame.K_DOWN in keys:
             self.spaceship.moveDown(self.spaceship_speed,self.height)
 
-        if pygame.K_SPACE in newkeys:
+        if pygame.K_l in newkeys:
             self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
         if pygame.K_a in keys:
             self.spaceship2.moveLeft(self.spaceship2_speed)
@@ -65,11 +68,14 @@ class SpaceshipData:
             self.spaceship2.moveUp(self.spaceship2_speed)
         if pygame.K_s in keys:
             self.spaceship2.moveDown(self.spaceship2_speed,self.height)
-        if pygame.K_g in newkeys:
+        if pygame.K_SPACE in newkeys:
             self.bullets.append(self.spaceship2.fire(self.bullet_width,self.bullet_height,self.bullet_color)) 
 
         if random.randint(1, self.frame_rate/2) == 1:
             self.addBaddie()
+
+        if random.randint(1, self.frame_rate/2) == 1:
+            self.addBaddie()    
 
         for bullet in self.bullets:
             bullet.moveBullet()
@@ -91,7 +97,7 @@ class SpaceshipData:
                     baddie.setAlive(False)
                     bullet.hit = False
                     self.kills = self.kills + 1
-                    self.money = self.money + 1
+                    self.money = self.money + 7
 
 
         live_bullets = []
@@ -110,6 +116,9 @@ class SpaceshipData:
     def addBaddie(self):
         new_baddie = Baddie( self.baddie_width, self.baddie_height, random.randint (1,self.width - self.baddie_width) , 0,   self.baddie_color )             
         self.baddies.append( new_baddie )
+
+        new_baddie2 = Baddie( self.baddie2_width, self.baddie2_height, random.randint (1,self.width - self.baddie2_width) , 0,   self.baddie2_color )             
+        self.baddies.append( new_baddie2 )
                    
         return
 
@@ -126,6 +135,8 @@ class SpaceshipData:
             bullet.draw(surface)
         for baddie in self.baddies:
            baddie.draw(surface)
+        for baddie2 in self.baddies:
+           baddie2.draw(surface)
         return
 
     
