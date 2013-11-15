@@ -37,10 +37,10 @@ class SpaceshipData:
         self.gold_color = (255, 255, 255)
         self.gold_x = 10
         self.gold_y = 60
-        self.lives = 30
-        self.lives_color = (255, 255, 255)
-        self.lives_x = 10
-        self.lives_y = 90
+        #self.lives = 30
+        #self.lives_color = (255, 255, 255)
+        #self.lives_x = 10
+        #self.lives_y = 90
         
         
         return
@@ -121,8 +121,6 @@ class SpaceshipData:
         self.drawTextLeft(surface, score_str, self.score_color, self.score_x, self.score_y, self.font2)
         gold_str = "Gold: " + str(self.money)
         self.drawTextLeft(surface, gold_str, self.gold_color, self.gold_x, self.gold_y, self.font2)
-        gold_str = "Civillions: " + str(self.lives)
-        self.drawTextLeft(surface, lives_str, self.lives_color, self.live_x, self.lives_y, self.font2)
         self.spaceship.draw(surface)
         self.spaceship2.draw(surface)
         for bullet in self.bullets:
