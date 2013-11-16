@@ -64,7 +64,7 @@ class SpaceshipData:
         return
 
 
-    def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up):
+    def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up, a_clicked2, left2, right2, down2, up2, a_clicked3, left3, right3, down3, up3, a_clicked4, left4, right4, down4, up4):
         if self.lives <= 0:
             return
         self.a_counter += 1
@@ -77,11 +77,45 @@ class SpaceshipData:
         if down:
             self.spaceship.moveDown(self.spaceship_speed,self.height)
         if a_clicked:
-            if self.a_counter > 0:
-                self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
-                self.a_counter = 0
-           
-
+#            if self.a_counter > 0:
+            self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
+ #               self.a_counter = 0
+        if left2:
+            self.spaceship2.moveLeft(self.spaceship2_speed)
+        if right2:
+            self.spaceship2.moveRight(self.spaceship2_speed,self.upper_limit)
+        if up2:
+            self.spaceship2.moveUp(self.spaceship2_speed)
+        if down2:
+            self.spaceship2.moveDown(self.spaceship2_speed,self.height)
+        if a_clicked2:
+ #           if self.a_counter > 0:
+            self.bullets.append(self.spaceship2.fire(self.bullet_width,self.bullet_height,self.bullet_color))
+#                self.a_counter = 0
+        if left3:
+            self.spaceship3.moveLeft(self.spaceship3_speed)
+        if right3:
+            self.spaceship3.moveRight(self.spaceship3_speed,self.upper_limit)
+        if up3:
+            self.spaceship3.moveUp(self.spaceship3_speed)
+        if down3:
+            self.spaceship3.moveDown(self.spaceship3_speed,self.height)
+        if a_clicked3:
+#            if self.a_counter > 0:
+            self.bullets.append(self.spaceship3.fire(self.bullet_width,self.bullet_height,self.bullet_color))
+#                self.a_counter = 0           
+        if left4:
+            self.spaceship4.moveLeft(self.spaceship4_speed)
+        if right4:
+            self.spaceship4.moveRight(self.spaceship4_speed,self.upper_limit)
+        if up4:
+            self.spaceship4.moveUp(self.spaceship4_speed)
+        if down4:
+            self.spaceship4.moveDown(self.spaceship4_speed,self.height)
+#        if a_clicked4:
+        if self.a_counter > 0:
+#                self.bullets.append(self.spaceship4.fire(self.bullet_width,self.bullet_height,self.bullet_color))
+                self.a_counter = 0  
         if pygame.K_LEFT in keys:
             self.spaceship.moveLeft(self.spaceship_speed)
         if pygame.K_RIGHT in keys:
@@ -203,6 +237,8 @@ class SpaceshipData:
         self.drawTextLeft(surface, lives_str, self.lives_color, self.lives_x, self.lives_y, self.font2)
         self.spaceship.draw(surface)
         self.spaceship2.draw(surface)
+        self.spaceship3.draw(surface)
+        self.spaceship4.draw(surface)
         for bullet in self.bullets:
             bullet.draw(surface)
         for baddie in self.baddies:

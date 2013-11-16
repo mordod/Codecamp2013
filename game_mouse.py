@@ -47,13 +47,35 @@ class Game:
             self.j4 = pygame.joystick.Joystick(3)
             self.j4.init()
         return self.count
-    def joystick(self, a_clicked, axis_position, left, right, down, up):
+    def joystick(self, a_clicked, axis_position, left, right, down, up, a_clicked2, left2, right2, down2, up2, a_clicked3, left3, right3, down3, up3, a_clicked4, left4, right4, down4, up4):
         a_clicked = False
         left = False
         right = False
         up = False
         down = False
         start_clicked = False
+        
+        a_clicked2 = False
+        left2 = False
+        right2 = False
+        up2 = False
+        down2 = False
+        start_clicked2 = False
+        
+        a_clicked3 = False
+        left3 = False
+        right3 = False
+        up3 = False
+        down3 = False
+        start_clicked3 = False
+        
+        a_clicked4 = False
+        left4 = False
+        right4 = False
+        up4 = False
+        down4 = False
+        start_clicked4 = False
+        
         A_BUTTON = 0
         B_BUTTON = 1
         Y_AXIS = 1
@@ -67,23 +89,191 @@ class Game:
                 start_clicked = True
                 pygame.quit()
             if j.get_axis(X_AXIS) != 0:
-                (x,y) = axis_position
+ #               (x,y) = axis_position
                 axis = round(j.get_axis(X_AXIS)*10)
                 if axis < 0:
                     left = True
                 if axis > 0:
                     right = True
-                axis_position = (int(x), int(y))
+#                axis_position = (int(x), int(y))
             if j.get_axis(Y_AXIS) != 0:
-                (x,y) = axis_position
+#                (x,y) = axis_position
                 axis = round(j.get_axis(Y_AXIS)*10)
                 if axis > 0:
                     down = True
                 if axis < 0:
                     up = True            
-                axis_position = (int(x), int(y))
-        return a_clicked, axis_position, left, right, down, up
-        #Joystick.get_axis(axis_number)
+#                axis_position = (int(x), int(y))
+
+
+        if self.count == 2:
+            j = self.j1        
+            if j.get_button(A_BUTTON) != 0:
+                a_clicked = True
+            if j.get_button(START) != 0:
+                start_clicked = True
+                pygame.quit()
+            if j.get_axis(X_AXIS) != 0:
+                axis = round(j.get_axis(X_AXIS)*10)
+                if axis < 0:
+                    left = True
+                if axis > 0:
+                    right = True
+            if j.get_axis(Y_AXIS) != 0:
+                axis = round(j.get_axis(Y_AXIS)*10)
+                if axis > 0:
+                    down = True
+                if axis < 0:
+                    up = True            
+            j2 = self.j2        
+            if j2.get_button(A_BUTTON) != 0:
+                a_clicked2 = True
+            if j2.get_button(START) != 0:
+                start_clicked2 = True
+                pygame.quit()
+            if j2.get_axis(X_AXIS) != 0:
+                axis2 = round(j.get_axis(X_AXIS)*10)
+                if axis2 < 0:
+                    left2 = True
+                if axis2 > 0:
+                    right2 = True
+            if j2.get_axis(Y_AXIS) != 0:
+                axis2 = round(j.get_axis(Y_AXIS)*10)
+                if axis2 > 0:
+                    down2 = True
+                if axis2 < 0:
+                    up2 = True
+
+        if self.count == 3:
+            j = self.j1        
+            if j.get_button(A_BUTTON) != 0:
+                a_clicked = True
+            if j.get_button(START) != 0:
+                start_clicked = True
+                pygame.quit()
+            if j.get_axis(X_AXIS) != 0:
+                axis = round(j.get_axis(X_AXIS)*10)
+                if axis < 0:
+                    left = True
+                if axis > 0:
+                    right = True
+            if j.get_axis(Y_AXIS) != 0:
+                axis = round(j.get_axis(Y_AXIS)*10)
+                if axis > 0:
+                    down = True
+                if axis < 0:
+                    up = True            
+            j2 = self.j2        
+            if j2.get_button(A_BUTTON) != 0:
+                a_clicked2 = True
+            if j2.get_button(START) != 0:
+                start_clicked2 = True
+                pygame.quit()
+            if j2.get_axis(X_AXIS) != 0:
+                axis2 = round(j2.get_axis(X_AXIS)*10)
+                if axis2 < 0:
+                    left2 = True
+                if axis2 > 0:
+                    right2 = True
+            if j2.get_axis(Y_AXIS) != 0:
+                axis2 = round(j2.get_axis(Y_AXIS)*10)
+                if axis2 > 0:
+                    down2 = True
+                if axis2 < 0:
+                    up2 = True 
+            j3 = self.j3        
+            if j3.get_button(A_BUTTON) != 0:
+                a_clicked3 = True
+            if j3.get_button(START) != 0:
+                start_clicked3 = True
+                pygame.quit()
+            if j3.get_axis(X_AXIS) != 0:
+                axis3 = round(j3.get_axis(X_AXIS)*10)
+                if axis3 < 0:
+                    left3 = True
+                if axis3 > 0:
+                    right3 = True
+            if j3.get_axis(Y_AXIS) != 0:
+                axis3 = round(j3.get_axis(Y_AXIS)*10)
+                if axis3 > 0:
+                    down3 = True
+                if axis3 < 0:
+                    up3 = True
+
+        if self.count == 4:
+            j = self.j1        
+            if j.get_button(A_BUTTON) != 0:
+                a_clicked = True
+            if j.get_button(START) != 0:
+                start_clicked = True
+                pygame.quit()
+            if j.get_axis(X_AXIS) != 0:
+                axis = round(j.get_axis(X_AXIS)*10)
+                if axis < 0:
+                    left = True
+                if axis > 0:
+                    right = True
+            if j.get_axis(Y_AXIS) != 0:
+                axis = round(j.get_axis(Y_AXIS)*10)
+                if axis > 0:
+                    down = True
+                if axis < 0:
+                    up = True            
+            j2 = self.j2        
+            if j2.get_button(A_BUTTON) != 0:
+                a_clicked2 = True
+            if j2.get_button(START) != 0:
+                start_clicked2 = True
+                pygame.quit()
+            if j2.get_axis(X_AXIS) != 0:
+                axis2 = round(j2.get_axis(X_AXIS)*10)
+                if axis2 < 0:
+                    left2 = True
+                if axis2 > 0:
+                    right2 = True
+            if j2.get_axis(Y_AXIS) != 0:
+                axis2 = round(j2.get_axis(Y_AXIS)*10)
+                if axis2 > 0:
+                    down2 = True
+                if axis2 < 0:
+                    up2 = True 
+            j3 = self.j3        
+            if j3.get_button(A_BUTTON) != 0:
+                a_clicked3 = True
+            if j3.get_button(START) != 0:
+                start_clicked3 = True
+                pygame.quit()
+            if j3.get_axis(X_AXIS) != 0:
+                axis3 = round(j3.get_axis(X_AXIS)*10)
+                if axis3 < 0:
+                    left3 = True
+                if axis3 > 0:
+                    right3 = True
+            if j3.get_axis(Y_AXIS) != 0:
+                axis3 = round(j3.get_axis(Y_AXIS)*10)
+                if axis3 > 0:
+                    down3 = True
+                if axis3 < 0:
+                    up3 = True
+            j4 = self.j4        
+            if j4.get_button(A_BUTTON) != 0:
+                a_clicked4 = True
+            if j4.get_button(START) != 0:
+                start_clicked4 = True
+                pygame.quit()
+            if j4.get_axis(X_AXIS) != 0:
+                axis4 = round(j4.get_axis(X_AXIS)*10)
+                if axis4 < 0:
+                    left4 = True
+                if axis4 > 0:
+                    right4 = True
+            if j4.get_axis(Y_AXIS) != 0:
+                axis4 = round(j4.get_axis(Y_AXIS)*10)
+                if axis4 > 0:
+                    down4 = True
+                if axis4 < 0:
+                    up4 = True 
+        return a_clicked, axis_position, left, right, down, up, a_clicked2, left2, right2, down2, up2, a_clicked3, left3, right3, down3, up3, a_clicked4, left4, right4, down4, up4
         
         
 
@@ -104,7 +294,28 @@ class Game:
         up = False
         down = False
         start_clicked = False
+        a_clicked2 = False
+        left2 = False
+        right2 = False
+        up2 = False
+        down2 = False
+        start_clicked2 = False
+        
+        a_clicked3 = False
+        left3 = False
+        right3 = False
+        up3 = False
+        down3 = False
+        start_clicked3 = False
+        
+        a_clicked4 = False
+        left4 = False
+        right4 = False
+        up4 = False
+        down4 = False
+        start_clicked4 = False
         axis_position = (1,400)
+
         while True:
             clock.tick(self.frames_per_second)
 
@@ -140,10 +351,10 @@ class Game:
                     newkeys.add(e.key)
                 if e.type == pygame.KEYUP:
                     keys.discard(e.key)
-            a_clicked, axis_position, left, right, down, up = self.joystick(a_clicked, axis_position, left, right, down, up)
+            a_clicked, axis_position, left, right, down, up, a_clicked2, left2, right2, down2, up2, a_clicked3, left3, right3, down3, up3, a_clicked4, left4, right4, down4, up4 = self.joystick(a_clicked, axis_position, left, right, down, up, a_clicked2, left2, right2, down2, up2, a_clicked3, left3, right3, down3, up3, a_clicked4, left4, right4, down4, up4)
 
             if self.on:
-                self.game_logic(keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up)
+                self.game_logic(keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up, a_clicked2, left2, right2, down2, up2, a_clicked3, left3, right3, down3, up3, a_clicked4, left4, right4, down4, up4)
                 self.paint(self.screen)
 
             pygame.display.flip()

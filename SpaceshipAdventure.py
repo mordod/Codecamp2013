@@ -9,8 +9,8 @@ class SpaceshipAdventure(Game):
         self.newGame(width,height,frame_rate)
         return
     
-    def game_logic(self, keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up):
-        self.data.evolve(keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up)
+    def game_logic(self, keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up, a_clicked2, left2, right2, down2, up2, a_clicked3, left3, right3, down3, up3, a_clicked4, left4, right4, down4, up4):
+        self.data.evolve(keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up, a_clicked2, left2, right2, down2, up2, a_clicked3, left3, right3, down3, up3, a_clicked4, left4, right4, down4, up4)
         return
 
     def paint(self, surface):
