@@ -52,15 +52,17 @@ class SpaceshipData:
         self.gold_x = 10
         self.gold_y = 60
         self.Img = pygame.image.load("background.png")
-        #self.lives = 30
-        #self.lives_color = (255, 255, 255)
-        #self.lives_x = 10
-        #self.lives_y = 90
+        self.lives = 30
+        self.lives_color = (255, 255, 255)
+        self.lives_x = 10
+        self.lives_y = 90
         
         
         return
 
     def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position):
+        if self.lives <= 0:
+            return
         if pygame.K_LEFT in keys:
             self.spaceship.moveLeft(self.spaceship_speed)
         if pygame.K_RIGHT in keys:
@@ -125,7 +127,9 @@ class SpaceshipData:
             bullet.checkBackWall(self.width)
                 
         for baddie in self.baddies:
-            baddie.tick(0,0,self.height,self.width)
+            if not baddie.tick(0,0,self.height,self.width):
+                self.lives -= 1
+        
 
         for bullet in self.bullets:
             if not bullet.alive:
@@ -176,6 +180,8 @@ class SpaceshipData:
         self.drawTextLeft(surface, score_str, self.score_color, self.score_x, self.score_y, self.font2)
         gold_str = "Gold: " + str(self.money)
         self.drawTextLeft(surface, gold_str, self.gold_color, self.gold_x, self.gold_y, self.font2)
+        lives_str = "lives: " + str(self.lives)
+        self.drawTextLeft(surface, lives_str, self.lives_color, self.lives_x, self.lives_y, self.font2)
         self.spaceship.draw(surface)
         self.spaceship2.draw(surface)
         for bullet in self.bullets:

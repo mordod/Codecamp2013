@@ -26,7 +26,6 @@ class Baddie():
             self.y = self.new_y
         if self.new_x < back_wall:
             self.new_x = back_wall
-            self.life =-1
         elif self.new_x + self.width > far_wall:
             self.new_x = far_wall - self.height
         self.x = self.new_x
