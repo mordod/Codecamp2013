@@ -73,7 +73,7 @@ class SpaceshipData:
         if self.kills < 150:
             if random.randint(1, self.frame_rate/2) == 1:
                 self.addBaddie()
-        if self.kills > 100:
+        if self.kills > 75:
             if random.randint(1, self.frame_rate/2) == 1:
                 self.addBaddie2()    
 
