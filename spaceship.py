@@ -38,6 +38,10 @@ class Spaceship():
         if self.y > board_height - self.height:
             self.y = board_height - self.height
         return
+##    def joystick_postition(self, dy, jx, jy):
+##        self.x = jx
+##        self.y = jy
+##        print jx, jy
 
     def fire(self,width,height,color):
         return Bullet(width,height,(self.x + self.width) , (self.y + (self.height /2) - (height/2)),color)

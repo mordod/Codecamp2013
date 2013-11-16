@@ -1,4 +1,5 @@
 import pygame
+import game_mouse
 from game_mouse import Game
 from SpaceshipData import SpaceshipData
 
@@ -8,8 +9,8 @@ class SpaceshipAdventure(Game):
         self.newGame(width,height,frame_rate)
         return
     
-    def game_logic(self, keys, newkeys, buttons, newbuttons, mouse_position):
-        self.data.evolve(keys, newkeys, buttons, newbuttons, mouse_position)
+    def game_logic(self, keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up):
+        self.data.evolve(keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up)
         return
 
     def paint(self, surface):

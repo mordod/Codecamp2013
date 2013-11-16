@@ -1,5 +1,6 @@
 import pygame
 import random
+import game_mouse
 from spaceship import Spaceship, Spaceship2
 from baddie import Baddie,Baddie2 
 
@@ -15,7 +16,7 @@ class SpaceshipData:
         self.upper_limit = self.width/1
         self.spaceship_width = 20
         self.spaceship_height = 10
-        self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,0,(self.height / 2) - 10, (255,255,255))
+        self.spaceship = Spaceship(self.spaceship_width,self.spaceship_height,0,(self.height / 2) - 50, (255,255,255))
         self.spaceship_speed = 10        
         self.spaceship2_width = 20
         self.spaceship2_height = 10
@@ -44,11 +45,26 @@ class SpaceshipData:
         #self.lives_color = (255, 255, 255)
         #self.lives_x = 10
         #self.lives_y = 90
+        self.a_counter = 0
         
         
         return
 
-    def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position):
+    def evolve(self, keys, newkeys, buttons, newbuttons, mouse_position, a_clicked, axis_position, left, right, down, up):
+        self.a_counter += 1
+        if left:
+            self.spaceship.moveLeft(self.spaceship_speed)
+        if right:
+            self.spaceship.moveRight(self.spaceship_speed,self.upper_limit)
+        if up:
+            self.spaceship.moveUp(self.spaceship_speed)
+        if down:
+            self.spaceship.moveDown(self.spaceship_speed,self.height)
+        if a_clicked:
+            if self.a_counter > 10:
+                self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
+                self.a_counter = 0
+            
         if pygame.K_LEFT in keys:
             self.spaceship.moveLeft(self.spaceship_speed)
         if pygame.K_RIGHT in keys:
