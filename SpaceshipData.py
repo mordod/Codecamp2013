@@ -1,7 +1,7 @@
 import pygame
 import random
-from spaceship import Spaceship, Spaceship2
-from baddie import Baddie,Baddie2 
+from spaceship import Spaceship, Spaceship2, Spaceship3, Spaceship4
+from baddie import Baddie,Baddie2,Baddie3 
 
 class SpaceshipData:
 
@@ -21,6 +21,14 @@ class SpaceshipData:
         self.spaceship2_height = 10
         self.spaceship2 = Spaceship2(self.spaceship2_width,self.spaceship2_height,0,(self.height / 2) - 10, (255,255,0))
         self.spaceship2_speed = 10
+        self.spaceship3_width = 20
+        self.spaceship3_height = 10
+        self.spaceship3 = Spaceship(self.spaceship_width,self.spaceship_height,0,(self.height / 2) - 10, (255,255,255))
+        self.spaceship3_speed = 10        
+        self.spaceship4_width = 20
+        self.spaceship4_height = 10
+        self.spaceship4 = Spaceship4(self.spaceship4_width,self.spaceship4_height,0,(self.height / 2) - 10, (255,255,0))
+        self.spaceship4_speed = 10
         self.bullets = []
         self.bullet_width = 5
         self.bullet_height = 10
@@ -32,6 +40,9 @@ class SpaceshipData:
         self.baddie2_width = 121
         self.baddie2_height = 95
         self.baddie2_color = (255,0,0)
+        self.baddie3_width = 121
+        self.baddie3_height = 95
+        self.baddie3_color = (255,0,0)
         self.kills = 0
         self.score_color = (255, 255, 255)
         self.score_x = 10
@@ -40,6 +51,7 @@ class SpaceshipData:
         self.gold_color = (255, 255, 255)
         self.gold_x = 10
         self.gold_y = 60
+        self.Img = pygame.image.load("background.png")
         #self.lives = 30
         #self.lives_color = (255, 255, 255)
         #self.lives_x = 10
@@ -69,13 +81,44 @@ class SpaceshipData:
         if pygame.K_s in keys:
             self.spaceship2.moveDown(self.spaceship2_speed,self.height)
         if pygame.K_SPACE in newkeys:
-            self.bullets.append(self.spaceship2.fire(self.bullet_width,self.bullet_height,self.bullet_color)) 
+            self.bullets.append(self.spaceship2.fire(self.bullet_width,self.bullet_height,self.bullet_color))
+
+        if pygame.K_a in keys:
+            self.spaceship3.moveLeft(self.spaceship3_speed)
+        if pygame.K_d in keys:
+            self.spaceship3.moveRight(self.spaceship3_speed,self.upper_limit)
+        if pygame.K_w in keys:
+            self.spaceship3.moveUp(self.spaceship3_speed)
+        if pygame.K_s in keys:
+            self.spaceship3.moveDown(self.spaceship3_speed,self.height)
+        if pygame.K_SPACE in newkeys:
+            self.bullets.append(self.spaceship3.fire(self.bullet_width,self.bullet_height,self.bullet_color))
+
+        if pygame.K_a in keys:
+            self.spaceship4.moveLeft(self.spaceship4_speed)
+        if pygame.K_d in keys:
+            self.spaceship4.moveRight(self.spaceship4_speed,self.upper_limit)
+        if pygame.K_w in keys:
+            self.spaceship4.moveUp(self.spaceship4_speed)
+        if pygame.K_s in keys:
+            self.spaceship4.moveDown(self.spaceship4_speed,self.height)
+        if pygame.K_SPACE in newkeys:
+            self.bullets.append(self.spaceship4.fire(self.bullet_width,self.bullet_height,self.bullet_color))     
+
+
         if self.kills < 150:
-            if random.randint(1, self.frame_rate/2) == 1:
+            if random.randint(1, self.frame_rate/9) == 1:
                 self.addBaddie()
         if self.kills > 75:
             if random.randint(1, self.frame_rate/2) == 1:
-                self.addBaddie2()    
+                self.addBaddie2()
+                
+        if self.kills > 10:
+            if random.randint(1, self.frame_rate/3) == 1:
+                self.addBaddie()
+                
+        if random.randint(1, self.frame_rate/2) == 1:
+            self.addBaddie3()
 
         for bullet in self.bullets:
             bullet.moveBullet()
@@ -120,12 +163,15 @@ class SpaceshipData:
     def addBaddie2(self):
         new_baddie2 = Baddie2( self.baddie2_width, self.baddie2_height, random.randint (1,self.width - self.baddie2_width) , 0,   self.baddie2_color )             
         self.baddies.append( new_baddie2 )
+
+    def addBaddie3(self):
+        new_baddie3 = Baddie3( self.baddie3_width, self.baddie3_height, random.randint (1,self.width - self.baddie3_width) , 0,   self.baddie3_color )             
+        self.baddies.append( new_baddie3 )
                    
         return
 
     def draw(self,surface):
-        rect = pygame.Rect(0,0,self.width,self.height)
-        surface.fill((0,0,0),rect )
+        surface.blit(self.Img, (0, 0))
         score_str = "Dragons Killed: " + str(self.kills)
         self.drawTextLeft(surface, score_str, self.score_color, self.score_x, self.score_y, self.font2)
         gold_str = "Gold: " + str(self.money)
