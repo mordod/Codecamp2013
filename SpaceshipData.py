@@ -77,7 +77,7 @@ class SpaceshipData:
         if down:
             self.spaceship.moveDown(self.spaceship_speed,self.height)
         if a_clicked:
-            if self.a_counter > 10:
+            if self.a_counter > 0:
                 self.bullets.append(self.spaceship.fire(self.bullet_width,self.bullet_height,self.bullet_color))
                 self.a_counter = 0
            
